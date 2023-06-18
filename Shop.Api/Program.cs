@@ -20,6 +20,7 @@ builder.Services.AddDbContext<ShopDbContext>(opt =>
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
+
 //builder.Services.AddFluentValidationRulesToSwagger();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<BrandPostDtoValidator>();

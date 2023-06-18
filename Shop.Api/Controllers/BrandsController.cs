@@ -67,5 +67,20 @@ namespace Shop.Api.Controllers
 
             return Ok(data);
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<BrandGetByIdDto> GetById(int id)
+        {
+            var data = _brandRepository.Get(x => x.Id == id);
+
+            if (data == null) return NotFound();
+
+            BrandGetByIdDto brandGetByIdDto = new BrandGetByIdDto
+            {
+                Id = id,
+                Name = data.Name
+            };
+            return Ok(brandGetByIdDto);
+        }
     }
 }

@@ -71,3 +71,4 @@ C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\Microsoft.En
 C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\FluentValidation.dll
 C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\Shop.Api.staticwebassets.runtime.json
