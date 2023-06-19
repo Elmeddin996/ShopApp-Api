@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Api.Dtos.BrandDtos;
 using Shop.Core.Entities;
@@ -11,19 +12,19 @@ namespace Shop.Api.Controllers
     public class BrandsController : ControllerBase
     {
         private readonly IBrandRepository _brandRepository;
+        private readonly IMapper _mapper;
 
-        public BrandsController(IBrandRepository brandRepository)
+        public BrandsController(IBrandRepository brandRepository, IMapper mapper)
         {
             _brandRepository = brandRepository;
+            _mapper = mapper;
         }
 
         [HttpPost("")]
         public IActionResult Create(BrandPostDto postDto)
         {
-            Brand brand = new Brand
-            {
-                Name = postDto.Name
-            };
+            Brand brand = _mapper.Map<Brand>(postDto);
+
             _brandRepository.Add(brand);
             _brandRepository.Commit();
 
@@ -63,7 +64,7 @@ namespace Shop.Api.Controllers
         [HttpGet("all")]
         public ActionResult<List<BrandGetAllDto>> GetAll()
         {
-            var data = _brandRepository.GetAllQueryable(x => true).Select(x => new BrandGetAllDto { Id = x.Id, Name = x.Name }).ToList();
+            var data = _mapper.Map<List<BrandGetAllDto>>(_brandRepository.GetAll(x => true));
 
             return Ok(data);
         }
@@ -71,16 +72,13 @@ namespace Shop.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<BrandGetByIdDto> GetById(int id)
         {
-            var data = _brandRepository.Get(x => x.Id == id);
+            Brand entity = _brandRepository.Get(x => x.Id == id);
 
-            if (data == null) return NotFound();
+            if (entity == null) return NotFound();
 
-            BrandGetByIdDto brandGetByIdDto = new BrandGetByIdDto
-            {
-                Id = id,
-                Name = data.Name
-            };
-            return Ok(brandGetByIdDto);
+            var data = _mapper.Map<BrandGetByIdDto>(entity);
+
+            return Ok(data);
         }
     }
 }

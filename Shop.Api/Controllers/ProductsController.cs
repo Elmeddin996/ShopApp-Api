@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shop.Api.Dtos.ProductDtos;
@@ -14,11 +15,13 @@ namespace Shop.Api.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly IWebHostEnvironment _env;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository productRepository, IWebHostEnvironment env)
+        public ProductsController(IProductRepository productRepository, IWebHostEnvironment env, IMapper mapper)
         {
             _productRepository = productRepository;
             _env = env;
+            _mapper = mapper;
         }
 
         [HttpPost("")]
@@ -37,15 +40,7 @@ namespace Shop.Api.Controllers
 
 
 
-            Product product = new Product
-            {
-                Name = postDto.Name,
-                BrandId = postDto.BrandId,
-                SalePrice = postDto.SalePrice,
-                CostPrice = postDto.CostPrice,
-                DiscountPercent = postDto.DiscountPercent,
-                ImageName = FileManager.Save(_env.WebRootPath, "uploads/products", postDto.ImageFile)
-            };
+            Product product = _mapper.Map<Product>(postDto);
 
             _productRepository.Add(product);
             _productRepository.Commit();
@@ -100,19 +95,11 @@ namespace Shop.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<ProductGetByIdDto> GetById(int id) 
         {
-            var data = _productRepository.Get(x => x.Id == id,"Brand");
+            Product entity = _productRepository.Get(x => x.Id == id,"Brand");
 
-            if (data == null) return NotFound();
+            if (entity == null) return NotFound();
 
-            ProductGetByIdDto product = new ProductGetByIdDto
-            {
-                Name = data.Name,
-                BrandId = data.BrandId,
-                CostPrice = data.CostPrice,
-                SalePrice = data.SalePrice,
-                DiscountPercent = data.DiscountPercent,
-                ImageName = data.ImageName
-            };
+            ProductGetByIdDto product = _mapper.Map<ProductGetByIdDto>(entity);
 
             return Ok(product);
 
@@ -121,15 +108,7 @@ namespace Shop.Api.Controllers
         [HttpGet("")]
         public ActionResult<ProductGetAllDto> GetAll() 
         {
-            var data = _productRepository.GetAllQueryable(x => true).Select(x => new ProductGetAllDto { 
-                Id = x.Id,
-                Name = x.Name,
-                BrandId = x.BrandId,
-                CostPrice = x.CostPrice,
-                SalePrice = x.SalePrice,
-                DiscountPercent = x.DiscountPercent,
-                ImageName = x.ImageName
-            }).ToList();
+            var data = _mapper.Map<List<ProductGetAllDto>>(_productRepository.GetAll(x => true, "Brand"));
 
             if (data == null) return NotFound();
 

@@ -72,3 +72,7 @@ C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\FluentValida
 C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
 C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\Shop.Api.staticwebassets.runtime.json
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
