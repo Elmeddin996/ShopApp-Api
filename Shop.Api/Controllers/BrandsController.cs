@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Shop.Api.Dtos.BrandDtos;
 using Shop.Core.Entities;
 using Shop.Core.Repositories;
+using Shop.Services.Dtos.BrandDtos;
+using Shop.Services.Interfaces;
 
 namespace Shop.Api.Controllers
 {
@@ -11,37 +11,28 @@ namespace Shop.Api.Controllers
     [ApiController]
     public class BrandsController : ControllerBase
     {
-        private readonly IBrandRepository _brandRepository;
-        private readonly IMapper _mapper;
+        
+        private readonly IBrandService _brandService;
 
-        public BrandsController(IBrandRepository brandRepository, IMapper mapper)
+        public BrandsController(IBrandService brandService)
         {
-            _brandRepository = brandRepository;
-            _mapper = mapper;
+           
+            _brandService = brandService;
         }
 
         [HttpPost("")]
         public IActionResult Create(BrandPostDto postDto)
         {
-            Brand brand = _mapper.Map<Brand>(postDto);
+            var result = _brandService.Create(postDto);
 
-            _brandRepository.Add(brand);
-            _brandRepository.Commit();
-
-            return StatusCode(201, new { brand.Id });
+            return StatusCode(201, result);
         }
 
 
         [HttpPut("{id}")]
         public IActionResult Edit(int id, BrandPutDto putDto)
         {
-            Brand brand = _brandRepository.Get(x => x.Id == id);
-
-            if (brand == null)
-                return NotFound();
-
-            brand.Name = putDto.Name;
-            _brandRepository.Commit();
+            _brandService.Edit(id, putDto);
 
             return NoContent();
         }
@@ -49,14 +40,7 @@ namespace Shop.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Brand brand = _brandRepository.Get(x => x.Id == id);
-
-            if (brand == null)
-                return NotFound();
-
-            _brandRepository.Remove(brand);
-            _brandRepository.Commit();
-
+            _brandService.Delete(id);
 
             return NoContent();
         }
@@ -64,21 +48,7 @@ namespace Shop.Api.Controllers
         [HttpGet("all")]
         public ActionResult<List<BrandGetAllDto>> GetAll()
         {
-            var data = _mapper.Map<List<BrandGetAllDto>>(_brandRepository.GetAll(x => true));
-
-            return Ok(data);
-        }
-
-        [HttpGet("{id}")]
-        public ActionResult<BrandGetByIdDto> GetById(int id)
-        {
-            Brand entity = _brandRepository.Get(x => x.Id == id);
-
-            if (entity == null) return NotFound();
-
-            var data = _mapper.Map<BrandGetByIdDto>(entity);
-
-            return Ok(data);
+            return Ok(_brandService.GetAll());
         }
     }
 }

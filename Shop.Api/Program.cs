@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Shop.Core.Repositories;
 using Shop.Data;
 using Shop.Data.Repositories;
-using Shop.Api.Dtos.BrandDtos;
+using Shop.Services.Dtos.BrandDtos;
 using Shop.Api.Profiles;
 using Microsoft.AspNetCore.Identity;
 using Shop.Core.Entities;
@@ -12,10 +12,25 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Shop.Api.Services;
+using Microsoft.AspNetCore.Mvc;
+using Shop.Services.Exceptions;
+using Shop.Services.Implementations;
+using Shop.Services.Interfaces;
+using Shop.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState.Where(x => x.Value.Errors.Count() > 0)
+            .Select(x => new RestExceptionError(x.Key, x.Value.Errors.First().ErrorMessage)).ToList();
+
+            return new BadRequestObjectResult(new { message = "", errors });
+        };
+    });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -33,6 +48,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<JwtService>();
 
 
@@ -118,5 +134,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllers();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.Run();

@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
+    "net6.0": {
       "AutoMapper/12.0.1": {
         "type": "package",
         "dependencies": {
@@ -34,12 +34,12 @@
       "FluentValidation/11.5.1": {
         "type": "package",
         "compile": {
-          "lib/net7.0/FluentValidation.dll": {
+          "lib/net6.0/FluentValidation.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net7.0/FluentValidation.dll": {
+          "lib/net6.0/FluentValidation.dll": {
             "related": ".xml"
           }
         }
@@ -175,25 +175,6 @@
             "related": ".xml"
           }
         }
-      },
-      "Microsoft.AspNetCore.OpenApi/7.0.5": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.4.3"
-        },
-        "compile": {
-          "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
       },
       "Microsoft.CSharp/4.7.0": {
         "type": "package",
@@ -671,7 +652,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.OpenApi/1.4.3": {
+      "Microsoft.OpenApi/1.2.3": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {
@@ -1089,7 +1070,7 @@
       },
       "Shop.Core/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.18"
@@ -1103,7 +1084,7 @@
       },
       "Shop.Data/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
+        "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.18",
           "Shop.Core": "1.0.0"
@@ -1113,6 +1094,21 @@
         },
         "runtime": {
           "bin/placeholder/Shop.Data.dll": {}
+        }
+      },
+      "Shop.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "FluentValidation.AspNetCore": "11.3.0",
+          "Shop.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Shop.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shop.Services.dll": {}
         }
       }
     }
@@ -1307,21 +1303,6 @@
         "lib/net6.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
         "microsoft.aspnetcore.identity.entityframeworkcore.6.0.18.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.OpenApi/7.0.5": {
-      "sha512": "yxFvk9BsgL/eDJVsPp0zbUpL73u9uXLYTnWoMBvnJdm8+970YuhM2XWcDOyetjkp8l8z00MHgfYHCRXOnLx/+Q==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.openapi/7.0.5",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "THIRD-PARTY-NOTICES.TXT",
-        "lib/net7.0/Microsoft.AspNetCore.OpenApi.dll",
-        "lib/net7.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
-        "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
     "Microsoft.CSharp/4.7.0": {
@@ -2221,17 +2202,20 @@
         "version.txt"
       ]
     },
-    "Microsoft.OpenApi/1.4.3": {
-      "sha512": "rURwggB+QZYcSVbDr7HSdhw/FELvMlriW10OeOzjPT7pstefMo7IThhtNtDudxbXhW+lj0NfX72Ka5EDsG8x6w==",
+    "Microsoft.OpenApi/1.2.3": {
+      "sha512": "Nug3rO+7Kl5/SBAadzSMAVgqDlfGjJZ0GenQrLywJ84XGKO0uRqkunz5Wyl0SDwcR71bAATXvSdbdzPrYRYKGw==",
       "type": "package",
-      "path": "microsoft.openapi/1.4.3",
+      "path": "microsoft.openapi/1.2.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "lib/net46/Microsoft.OpenApi.dll",
+        "lib/net46/Microsoft.OpenApi.pdb",
+        "lib/net46/Microsoft.OpenApi.xml",
         "lib/netstandard2.0/Microsoft.OpenApi.dll",
         "lib/netstandard2.0/Microsoft.OpenApi.pdb",
         "lib/netstandard2.0/Microsoft.OpenApi.xml",
-        "microsoft.openapi.1.4.3.nupkg.sha512",
+        "microsoft.openapi.1.2.3.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
     },
@@ -2913,16 +2897,18 @@
       "type": "project",
       "path": "../Shop.Data/Shop.Data.csproj",
       "msbuildProject": "../Shop.Data/Shop.Data.csproj"
+    },
+    "Shop.Services/1.0.0": {
+      "type": "project",
+      "path": "../Shop.Services/Shop.Services.csproj",
+      "msbuildProject": "../Shop.Services/Shop.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
-      "FluentValidation.AspNetCore >= 11.3.0",
+    "net6.0": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.18",
-      "Microsoft.AspNetCore.OpenApi >= 7.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.18",
-      "Shop.Data >= 1.0.0",
+      "Shop.Services >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -2943,18 +2929,18 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net7.0"
+        "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\User\\OneDrive\\Desktop\\ShopAppApi\\Shop.Data\\Shop.Data.csproj": {
-              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\ShopAppApi\\Shop.Data\\Shop.Data.csproj"
+            "C:\\Users\\User\\OneDrive\\Desktop\\ShopAppApi\\Shop.Services\\Shop.Services.csproj": {
+              "projectPath": "C:\\Users\\User\\OneDrive\\Desktop\\ShopAppApi\\Shop.Services\\Shop.Services.csproj"
             }
           }
         }
@@ -2966,24 +2952,12 @@
       }
     },
     "frameworks": {
-      "net7.0": {
-        "targetAlias": "net7.0",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
-          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
-            "target": "Package",
-            "version": "[12.0.1, )"
-          },
-          "FluentValidation.AspNetCore": {
-            "target": "Package",
-            "version": "[11.3.0, )"
-          },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[6.0.18, )"
-          },
-          "Microsoft.AspNetCore.OpenApi": {
-            "target": "Package",
-            "version": "[7.0.5, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

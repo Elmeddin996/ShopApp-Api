@@ -1,0 +1,17 @@
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.csproj.AssemblyReference.cache
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.AssemblyInfoInputs.cache
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.AssemblyInfo.cs
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.csproj.CoreCompileInputs.cache
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\bin\Debug\net6.0\Shop.Services.deps.json
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\bin\Debug\net6.0\Shop.Services.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\bin\Debug\net6.0\Shop.Services.pdb
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\bin\Debug\net6.0\Shop.Core.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\bin\Debug\net6.0\Shop.Data.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\bin\Debug\net6.0\Shop.Data.pdb
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\bin\Debug\net6.0\Shop.Core.pdb
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.csproj.CopyComplete
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\refint\Shop.Services.dll
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\Shop.Services.pdb
+C:\Users\User\OneDrive\Desktop\ShopAppApi\Shop.Services\obj\Debug\net6.0\ref\Shop.Services.dll

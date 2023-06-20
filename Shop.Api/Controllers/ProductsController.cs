@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Shop.Api.Dtos.ProductDtos;
 using Shop.Api.Helpers;
 using Shop.Core.Entities;
 using Shop.Core.Repositories;
+using Shop.Services.Dtos.ProductDtos;
 
 namespace Shop.Api.Controllers
 {
@@ -17,7 +15,7 @@ namespace Shop.Api.Controllers
         private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository productRepository, IWebHostEnvironment env, IMapper mapper)
+        public ProductsController(IProductRepository productRepository, IWebHostEnvironment env,IMapper mapper)
         {
             _productRepository = productRepository;
             _env = env;
