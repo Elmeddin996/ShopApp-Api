@@ -17,6 +17,7 @@ using Shop.Services.Exceptions;
 using Shop.Services.Implementations;
 using Shop.Services.Interfaces;
 using Shop.Api.Middlewares;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,16 +50,19 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 builder.Services.AddScoped<IBrandRepository, BrandRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IBrandService, BrandService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<JwtService>();
 
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<BrandPostDtoValidator>();
 
-builder.Services.AddAutoMapper(opt =>
+builder.Services.AddScoped(provider =>
+new MapperConfiguration(opt =>
 {
-    opt.AddProfile(new MapProfile());
-});
+    opt.AddProfile(new MapProfile(provider.GetService<IHttpContextAccessor>()));
+}
+).CreateMapper());
 
 
 builder.Services.AddSwaggerGen(c =>

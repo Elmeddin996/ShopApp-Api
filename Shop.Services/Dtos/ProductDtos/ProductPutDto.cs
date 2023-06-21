@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
-using Shop.Core.Atributes.ValidationAtributes;
 
 namespace Shop.Services.Dtos.ProductDtos
 {
@@ -11,10 +10,7 @@ namespace Shop.Services.Dtos.ProductDtos
         public decimal SalePrice { get; set; }
         public decimal CostPrice { get; set; }
         public decimal DiscountPercent { get; set; }
-
-        [MaxFileSize(2097152)]
-        [AllowedFileTypes("image/jpeg", "image/png")]
-        public IFormFile ImageFile { get; set; }
+        public IFormFile? ImageFile { get; set; }
 
     }
 
@@ -36,6 +32,15 @@ namespace Shop.Services.Dtos.ProductDtos
                     {
                         context.AddFailure(nameof(x.DiscountPercent), "DiscountPercent is incorrect");
                     }
+                }
+
+                if (x.ImageFile != null)
+                {
+                    if (x.ImageFile.Length > 2097152)
+                        context.AddFailure(nameof(x.ImageFile), "ImageFile must be less or equal than 2MB");
+
+                    if (x.ImageFile.ContentType != "image/jpeg" && x.ImageFile.ContentType != "image/png")
+                        context.AddFailure(nameof(x.ImageFile), "ImageFile must be image/jpeg or image/png");
                 }
             });
 
