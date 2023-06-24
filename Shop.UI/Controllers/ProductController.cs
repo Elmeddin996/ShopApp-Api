@@ -15,8 +15,8 @@ namespace Shop.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            //var token = Request.Cookies["auth_token"];
-            //_client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
+        //    var token = Request.Cookies["auth_token"];
+        //    _client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
 
             using (var response = await _client.GetAsync("https://localhost:7233/api/Products"))
             {

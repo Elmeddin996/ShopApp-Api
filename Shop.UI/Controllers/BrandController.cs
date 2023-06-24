@@ -15,8 +15,8 @@ namespace Shop.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var token = Request.Cookies["auth_token"];
-            _client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
+            //var token = Request.Cookies["auth_token"];
+            //_client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
 
             using (var response = await _client.GetAsync("https://localhost:7233/api/Brands/all"))
             {
@@ -42,13 +42,13 @@ namespace Shop.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(BrandCreateRequest brand)
         {
-            var token = Request.Cookies["auth_token"];
-            _client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
+            //var token = Request.Cookies["auth_token"];
+            //_client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
 
             if (!ModelState.IsValid) return View();
 
             StringContent content = new StringContent(JsonConvert.SerializeObject(brand), System.Text.Encoding.UTF8, "application/json");
-            using (var response = await _client.PostAsync("https://localhost:7171/api/Brands", content))
+            using (var response = await _client.PostAsync("https://localhost:7233/api/Brands", content))
             {
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction("Index");
@@ -71,10 +71,10 @@ namespace Shop.UI.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var token = Request.Cookies["auth_token"];
-            _client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
+            //var token = Request.Cookies["auth_token"];
+            //_client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
 
-            using (var response = await _client.GetAsync($"https://localhost:7171/api/Brands/{id}"))
+            using (var response = await _client.GetAsync($"https://localhost:7233/api/Brands/{id}"))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -98,9 +98,9 @@ namespace Shop.UI.Controllers
 
             StringContent content = new StringContent(JsonConvert.SerializeObject(brand), System.Text.Encoding.UTF8, "application/json");
 
-            var token = Request.Cookies["auth_token"];
-            _client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
-            using (var response = await _client.PutAsync($"https://localhost:7171/api/Brands/{id}", content))
+            //var token = Request.Cookies["auth_token"];
+            //_client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
+            using (var response = await _client.PutAsync($"https://localhost:7233/api/Brands/{id}", content))
             {
                 if (response.IsSuccessStatusCode)
                     return RedirectToAction("Index");
@@ -123,9 +123,9 @@ namespace Shop.UI.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var token = Request.Cookies["auth_token"];
-            _client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
-            using (var response = await _client.DeleteAsync($"https://localhost:7171/api/Brands/{id}"))
+            //var token = Request.Cookies["auth_token"];
+            //_client.DefaultRequestHeaders.Add(HeaderNames.Authorization, token);
+            using (var response = await _client.DeleteAsync($"https://localhost:7233/api/Brands/{id}"))
             {
                 if (response.IsSuccessStatusCode)
                     return Ok();

@@ -26,7 +26,7 @@ namespace Shop.Api.Profiles
 
 
             CreateMap<BrandPostDto, Brand>();
-            CreateMap<Brand, ProductGetAllDto>();
+            CreateMap<Brand, BrandGetAllDto>();
             CreateMap<Brand, BrandInProductDto>();
         }
     }
